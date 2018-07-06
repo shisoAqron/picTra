@@ -1,12 +1,14 @@
 const $ = require('jQuery')
 const datepicker = require('js-datepicker')
+const bootstrap = require('bootstrap')
 const imageData = require('./imageData')
 
-//const rootDir = 'C:\\Users\\shiso\\Documents\\picTra\\picDir'
-const rootDir = ''
+
+const rootDir = 'C:\\Users\\shiso\\Documents\\picTra\\picDir'
+//const rootDir = ''
 let imgs = new imageData(rootDir)
 
-// ready時の挙動
+// ready時の挙動（index.htmlに記述していないDOM操作の順番に注意）
 $(() => {
     // 最初に画像を降順で全部出す
     const files = imgs.getFiles('createTime', 'dsc')
@@ -49,8 +51,8 @@ $('#datepicker_reset').on('click', () => {
 
 // ディレクトリ選択
 $('#directry_selecter').change(()=>{
+    $('.custom-file-label').html($('#directry_selecter')[0].files[0].name)
     const path = $('#directry_selecter')[0].files[0].path
-    console.log()
 
     imgs = new imageData(path)
     const files = imgs.getFiles('createTime', 'dsc')
@@ -63,8 +65,50 @@ $('#directry_selecter').change(()=>{
  */
 const reRender_picture_list = (files) =>{
     $('#picture_list').empty()
-    console.log(files)
+    //console.log(files)
+    let y = 0
+    let m = 0
+    let d = 0 
     files.forEach(f => {
-        $('#picture_list').append('<img class="picture" src="'+f.fullPath+'" alt="">');
+        const tmpY = f.createTime.getFullYear()
+        const tmpM = f.createTime.getMonth()+1
+        const tmpD = f.createTime.getDate()
+        if(y != tmpY || m != tmpM || d != tmpD){
+            const strDate = (y != tmpY)?
+                tmpY+"-"+tmpM+"-"+tmpD : tmpM+"-"+tmpD
+            y = tmpY
+            m = tmpM
+            d = tmpD
+
+            $('#picture_list').append('<h1>'+strDate+'</h1>')
+        }
+
+        $('#picture_list').append('<div class="picture_box"></div>')
+        $("#picture_list > .picture_box:last").append('<img class="picture" src="'+f.fullPath+'">')
+        $("#picture_list > .picture_box:last").append('<input class="disabled_checkbox" type="checkbox" checked />')
     })
+
+
+    // 選択時，画像のcheckedクラス付与/解除
+    $('.picture').on('click', (eo) => {
+        if ($(eo.target).hasClass('checked')) $(eo.target).removeClass('checked')
+        else $(eo.target).addClass('checked')
+    });
+
+    // 画像のチェックボックス無効化
+    $('.disabled_checkbox').on('click', () => {
+        return false;
+    });
 }
+
+// 転送ボタン
+$('#transfer_subbmit').on('click', () => {
+    $("img.checked").each((i,e) => {
+        console.log(e.getAttribute('src'))
+    })
+})
+
+// 画像選択解除
+$('#remove_checked').on('click', ( )=> {
+    $('.picture').removeClass('checked')
+})

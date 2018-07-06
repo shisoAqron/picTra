@@ -1,21 +1,62 @@
 <!doctype html>
 <html lang="ja">
   <head>
-    <title>画像を出すよ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- other CSS-->
+    <link rel="stylesheet" type="text/css" href="./node_modules/js-datepicker/datepicker.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Hello, world!</title>
   </head>
   <body>
-    <div id="picture_list" ></div>
-    <div id="interface">
-      <input id="directry_selecter" type="file" name="upfile[]" webkitdirectory>
-      from:
-      <input id="datepicker_from" type="text">
-      to:
-      <input id="datepicker_to" type="text">
-      <button id="datepicker_subbmit">検索</button>
-      <button id="datepicker_reset">リセット</button>
+    <div class="container">
+        <div class="row">
+            <!-- 写真領域 -->
+            <div id="picture_list" class="col-md-9"></div>
+            <!-- 写真領域 ここまで-->
+            <!-- コンパネ領域 -->
+            <div id="interface" class="col-md-3">
+                <!-- ディレクトリ -->
+                <input id="directry_selecter" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
+                <label class="custom-file-label" for="directry_selecter">ファイル選択...</label>
+                <!-- ディレクトリ ここまで -->
+
+                <!-- フィルタ -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">from</span>
+                    </div>
+                    <input type="text" class="form-control" id="datepicker_from">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">to</span>
+                    </div>
+                    <input type="text" class="form-control" id="datepicker_to">
+                
+                </div>
+
+                <button id="datepicker_subbmit" class="btn btn-primary">検索</button>
+                <button id="datepicker_reset" class="btn btn-primary">リセット</button>
+                <!-- フィルタ ここまで -->
+            
+                <!-- 転送系 -->
+                <button id="remove_checked" class="btn btn-primary">選択解除</button>
+                <button id="transfer_subbmit" class="btn btn-primary">転送</button>
+                <!-- 転送系 ここまで -->
+            </div>
+            <!-- コンパネ領域 ここまで -->
+        </div>
     </div>
 
+    <!-- Optional JavaScript -->
     <script type="text/javascript" src="app.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="render.js"></script>
   </body>
 </html>
