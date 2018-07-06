@@ -1,0 +1,19 @@
+{
+  "name": "picTra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "js-datepicker": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-packager . picTra --platform=win32 --arch=x64 --electron-version=2.0.4 --overwrite"
+  },
+  "keywords": [],
+  "author": "shisoAqron",
+  "license": "ISC"
+}
