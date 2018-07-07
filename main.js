@@ -28,7 +28,7 @@ app.on("ready", () => {
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   //Devtool
-  mainWindow.toggleDevTools();
+  //mainWindow.toggleDevTools();
 
   // ウィンドウが閉じられたらアプリも終了
   mainWindow.on("closed", () => {
