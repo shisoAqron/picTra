@@ -26,3 +26,8 @@ img.picture.checked{
   right: 12px;
   display: none;
 }
+
+/*カスタムフォーム */
+.custom-file {
+  overflow: hidden;
+}

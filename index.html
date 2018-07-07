@@ -15,43 +15,52 @@
   </head>
   <body>
     <div class="container">
-        <div class="row">
-            <!-- 写真領域 -->
-            <div id="picture_list" class="col-md-9"></div>
-            <!-- 写真領域 ここまで-->
-            <!-- コンパネ領域 -->
-            <div id="interface" class="col-md-3">
-                <!-- ディレクトリ -->
-                <input id="directry_selecter" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
-                <label class="custom-file-label" for="directry_selecter">ファイル選択...</label>
-                <!-- ディレクトリ ここまで -->
+      <div class="row">
+        <!-- 写真領域 -->
+        <div id="picture_list" class="col-md-9"></div>
+        <!-- 写真領域 ここまで-->
+        <!-- コンパネ領域 -->
+        <div id="interface" class="col-md-3">
+          <!-- ディレクトリ -->
+          <div class="custom-file">
+            <input id="directry_selecter" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
+            <label id="directry_selecter_label" class="custom-file-label" for="directry_selecter">ファイル選択...</label>
+          </div>
+          <!-- ディレクトリ ここまで -->
 
-                <!-- フィルタ -->
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">from</span>
-                    </div>
-                    <input type="text" class="form-control" id="datepicker_from">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">to</span>
-                    </div>
-                    <input type="text" class="form-control" id="datepicker_to">
-                
-                </div>
-
-                <button id="datepicker_subbmit" class="btn btn-primary">検索</button>
-                <button id="datepicker_reset" class="btn btn-primary">リセット</button>
-                <!-- フィルタ ここまで -->
-            
-                <!-- 転送系 -->
-                <button id="remove_checked" class="btn btn-primary">選択解除</button>
-                <button id="transfer_subbmit" class="btn btn-primary">転送</button>
-                <!-- 転送系 ここまで -->
+          <!-- フィルタ -->
+          <div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">from</span>
+              </div>
+              <input type="text" class="form-control" id="datepicker_from">
             </div>
-            <!-- コンパネ領域 ここまで -->
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">to</span>
+              </div>
+              <input type="text" class="form-control" id="datepicker_to">
+            </div>
+
+            <button id="datepicker_subbmit" class="btn btn-primary">検索</button>
+            <button id="datepicker_reset" class="btn btn-primary">リセット</button>
+          </div>
+          <!-- フィルタ ここまで -->
+        
+          <!-- 転送系 --> 
+          <div>
+            <div class="custom-file">
+              <input id="transfer_target" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
+              <label id="transfer_target_label" class="custom-file-label" for="transfer_target">転送先選択...</label>
+            </div>
+            <button id="remove_checked" class="btn btn-primary">選択解除</button>
+            <button id="transfer_subbmit" class="btn btn-primary">転送</button>
+          </div>
+          <!-- 転送系 ここまで -->
         </div>
+        <!-- コンパネ領域 ここまで -->
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

@@ -51,7 +51,8 @@ $('#datepicker_reset').on('click', () => {
 
 // ディレクトリ選択
 $('#directry_selecter').change(()=>{
-    $('.custom-file-label').html($('#directry_selecter')[0].files[0].name)
+    if(typeof $('#directry_selecter')[0].files[0] == 'undefined') return
+    $('#directry_selecter_label').html($('#directry_selecter')[0].files[0].name)
     const path = $('#directry_selecter')[0].files[0].path
 
     imgs = new imageData(path)
@@ -101,10 +102,20 @@ const reRender_picture_list = (files) =>{
     });
 }
 
+// 転送先フォルダ決定でフォルダ名表示
+$('#transfer_target').change(()=>{
+    if(typeof $('#transfer_target')[0].files[0] == 'undefined') return
+    $('#transfer_target_label').html($('#transfer_target')[0].files[0].name)
+})
+
 // 転送ボタン
 $('#transfer_subbmit').on('click', () => {
+    if(typeof $('#transfer_target')[0].files[0] == 'undefined') return
+    const path = $('#transfer_target')[0].files[0].path
+
     $("img.checked").each((i,e) => {
-        console.log(e.getAttribute('src'))
+        console.log(path+"に src: "+e.getAttribute('src'))
+        
     })
 })
 
@@ -112,3 +123,4 @@ $('#transfer_subbmit').on('click', () => {
 $('#remove_checked').on('click', ( )=> {
     $('.picture').removeClass('checked')
 })
+
