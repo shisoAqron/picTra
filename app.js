@@ -1,6 +1,8 @@
+const fs = require('fs')
+const path = require('path')
 const $ = require('jQuery')
 const datepicker = require('js-datepicker')
-const bootstrap = require('bootstrap')
+//const bootstrap = require('bootstrap')
 const imageData = require('./imageData')
 
 
@@ -108,16 +110,27 @@ $('#transfer_target').change(()=>{
     $('#transfer_target_label').html($('#transfer_target')[0].files[0].name)
 })
 
-// 転送ボタン
+// 転送ボタンを押してコピー
 $('#transfer_subbmit').on('click', () => {
     if(typeof $('#transfer_target')[0].files[0] == 'undefined') return
-    const path = $('#transfer_target')[0].files[0].path
+    const targetPath = $('#transfer_target')[0].files[0].path
 
     $("img.checked").each((i,e) => {
-        console.log(path+"に src: "+e.getAttribute('src'))
-        // コピー
+        const originalData = e.getAttribute('src')
+        const copyData = path.join(targetPath, path.basename(originalData) )
+
+        fs.copyFile(originalData, copyData, (err) => {
+            if (err) {
+                throw err
+            }
+            console.log(originalData+ ' ->' + copyData )
+            $("#tansfer_status").append("<p>"+path.basename(originalData)+"の転送が完了しました<p>")
+        })
     })
+    
 })
+
+$("#tansfer_status").val("転送が完了しました")
 
 // 画像選択解除
 $('#remove_checked').on('click', ( )=> {

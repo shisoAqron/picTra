@@ -22,14 +22,18 @@
         <!-- コンパネ領域 -->
         <div id="interface" class="col-md-3">
           <!-- ディレクトリ -->
-          <div class="custom-file">
-            <input id="directry_selecter" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
-            <label id="directry_selecter_label" class="custom-file-label" for="directry_selecter">ファイル選択...</label>
+          <div>
+            <p>表示するフォルダ</p>
+            <div class="custom-file">
+              <input id="directry_selecter" class="custom-file-input" type="file" name="upfile[]"  webkitdirectory>
+              <label id="directry_selecter_label" class="custom-file-label" for="directry_selecter">ファイル選択...</label>
+            </div>
           </div>
           <!-- ディレクトリ ここまで -->
 
           <!-- フィルタ -->
           <div>
+            <p>日付の絞り込み</p>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">from</span>
@@ -50,6 +54,7 @@
         
           <!-- 転送系 --> 
           <div>
+            <p>保存先</p>
             <div class="custom-file">
               <input id="transfer_target" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
               <label id="transfer_target_label" class="custom-file-label" for="transfer_target">転送先選択...</label>
@@ -57,6 +62,7 @@
             <button id="remove_checked" class="btn btn-primary">選択解除</button>
             <button id="transfer_subbmit" class="btn btn-primary">転送</button>
           </div>
+          <div id="tansfer_status"></div>
           <!-- 転送系 ここまで -->
         </div>
         <!-- コンパネ領域 ここまで -->
