@@ -1,3 +1,5 @@
+
+/*写真系*/
 .picture {
   width: 200px;
   position: relative;
@@ -6,13 +8,14 @@
 .picture_box {
   width: 200px;
   height: 200px;
+  padding: 5px;
 
   display: inline-block;
   position: relative;
 }
 
 img.picture.checked{
-  border:10px solid blue;
+  border:5px solid blue;
   box-sizing: border-box;
 }
 
@@ -27,7 +30,43 @@ img.picture.checked{
   display: none;
 }
 
+/*画像なしメッセージ*/
+.no_picture{
+  text-align: center;
+}
+
+
+/*日付*/
+.date_header{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+/*インタフェース全体*/
+.interface_colmn{
+  background: aquamarine;
+}
+
+/* 操作パネルの追従*/
+.interface_body{
+  position: sticky;
+  top: 20px;
+}
+
+.interface_body .card{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
 /*カスタムフォーム */
 .custom-file {
   overflow: hidden;
+}
+
+
+/*日付選択のフォーム*/
+.datepicker_form{
+  width: 100%;
+  margin-bottom: .75rem;
 }

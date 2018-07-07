@@ -2,12 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const $ = require('jQuery')
 const datepicker = require('js-datepicker')
-//const bootstrap = require('bootstrap')
 const imageData = require('./imageData')
 
-
-const rootDir = 'C:\\Users\\shiso\\Documents\\picTra\\picDir'
-//const rootDir = ''
+const rootDir = ''
 let imgs = new imageData(rootDir)
 
 // ready時の挙動（index.htmlに記述していないDOM操作の順番に注意）
@@ -18,9 +15,11 @@ $(() => {
 
     // datepickerの初期化
     const dp_custom1 = {
+        position: 'br',
         formatter: (el, date, instance) => { el.value = dateFormat(date)}
     }
     const dp_custom2 = {
+        position: 'br',
         formatter: (el, date, instance) => { el.value = dateFormat(date)}
     }
     const dateFormat = (date) =>{
@@ -110,14 +109,19 @@ const reRender_picture_list = (files) =>{
             m = tmpM
             d = tmpD
 
-            $('#picture_list').append('<h1>'+strDate+'</h1>')
+            $('#picture_list').append('<h1 class="date_header">'+strDate+'</h1>')
         }
 
         $('#picture_list').append('<div class="picture_box"></div>')
-        $("#picture_list > .picture_box:last").append('<img class="picture" src="'+f.fullPath+'">')
+        $("#picture_list > .picture_box:last").append('<img class="picture img-thumbnail" src="'+f.fullPath+'">')
         $("#picture_list > .picture_box:last").append('<input class="disabled_checkbox" type="checkbox" checked />')
     })
 
+    if(Object.keys(files).length == 0){
+
+        $("#picture_list").append('<div id="no_picture" class="no_picture"></div>')
+        $("#no_picture").append('<h1>表示フォルダを選択してください</h1>')
+    }
 
     // 選択時，画像のcheckedクラス付与/解除
     $('.picture').on('click', (eo) => {
@@ -156,8 +160,6 @@ $('#transfer_subbmit').on('click', () => {
     })
     
 })
-
-$("#tansfer_status").val("転送が完了しました")
 
 // 画像選択解除
 $('#remove_checked').on('click', ( )=> {

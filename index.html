@@ -11,60 +11,77 @@
     <link rel="stylesheet" type="text/css" href="./node_modules/js-datepicker/datepicker.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <title>Hello, world!</title>
+    <title>picTra🐯</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <!-- 写真領域 -->
         <div id="picture_list" class="col-md-9"></div>
         <!-- 写真領域 ここまで-->
         <!-- コンパネ領域 -->
-        <div id="interface" class="col-md-3">
-          <!-- ディレクトリ -->
-          <div>
-            <p>表示するフォルダ</p>
-            <input id="dir_mode_change" type="checkbox" />iphoneの場合は✓
-            <div class="custom-file">
-              <input id="directry_selecter" class="custom-file-input" mode="nomal"  type="file" name="upfile[]"  webkitdirectory>
-              <label id="directry_selecter_label" class="custom-file-label" for="directry_selecter">ファイル選択...</label>
-            </div>
-          </div>
-          <!-- ディレクトリ ここまで -->
-
-          <!-- フィルタ -->
-          <div>
-            <p>日付の絞り込み</p>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">from</span>
+        <div id="interface" class="col-md-3 interface_colmn">
+          <div class="interface_body">
+            <!-- ディレクトリ -->
+            <div class="card" data-spy="affix">
+              <div class="card-body">
+                <h5 class="card-title">表示するフォルダ</h5>
+                  <div class="custom-control custom-checkbox ">
+                    <input type="checkbox" class="custom-control-input" id="dir_mode_change">
+                    <label class="custom-control-label" for="dir_mode_change">iphoneの場合は✓</label>
+                  </div>
+                <div class="custom-file">
+                  <input id="directry_selecter" class="custom-file-input" mode="nomal"  type="file" name="upfile[]"  webkitdirectory>
+                  <label id="directry_selecter_label" class="custom-file-label" for="directry_selecter">ファイル選択...</label>
+                </div>
               </div>
-              <input type="text" class="form-control" id="datepicker_from">
             </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">to</span>
-              </div>
-              <input type="text" class="form-control" id="datepicker_to">
-            </div>
+            <!-- ディレクトリ ここまで -->
 
-            <button id="datepicker_subbmit" class="btn btn-primary">検索</button>
-            <button id="datepicker_reset" class="btn btn-primary">リセット</button>
-          </div>
-          <!-- フィルタ ここまで -->
-        
-          <!-- 転送系 --> 
-          <div>
-            <p>保存先</p>
-            <div class="custom-file">
-              <input id="transfer_target" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
-              <label id="transfer_target_label" class="custom-file-label" for="transfer_target">転送先選択...</label>
+            <!-- フィルタ -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">日付の絞り込み</h5>
+                <div class="input-group datepicker_form">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">from</span>
+                  </div>
+                  <input type="text" class="form-control" id="datepicker_from">
+                </div>
+                <div class="input-group datepicker_form">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">to</span>
+                  </div>
+                  <input type="text" class="form-control" id="datepicker_to">
+                </div>
+
+                <button id="datepicker_reset" class="btn btn-primary">リセット</button>
+                <button id="datepicker_subbmit" class="btn btn-primary">検索</button>
+              </div>
             </div>
-            <button id="remove_checked" class="btn btn-primary">選択解除</button>
-            <button id="transfer_subbmit" class="btn btn-primary">転送</button>
+            <!-- フィルタ ここまで -->
+          
+            <!-- 転送系 --> 
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">保存先</h5>
+                <div class="custom-file">
+                  <input id="transfer_target" class="custom-file-input" type="file" name="upfile[]" webkitdirectory >
+                  <label id="transfer_target_label" class="custom-file-label" for="transfer_target">転送先選択...</label>
+                </div>
+                <button id="remove_checked" class="btn btn-primary">選択解除</button>
+                <button id="transfer_subbmit" class="btn btn-primary">転送</button>
+              </div>
+            </div>
+            <!-- 転送系 ここまで -->
+            <!-- メッセージ -->
+            <div class="card">
+              <div class="card-body">
+                <div id="tansfer_status"></div>
+              </div>
+            </div>
+            <!-- メッセージここまで -->
           </div>
-          <div id="tansfer_status"></div>
-          <!-- 転送系 ここまで -->
         </div>
         <!-- コンパネ領域 ここまで -->
       </div>
