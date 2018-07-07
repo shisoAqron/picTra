@@ -115,7 +115,7 @@ $('#transfer_subbmit').on('click', () => {
 
     $("img.checked").each((i,e) => {
         console.log(path+"に src: "+e.getAttribute('src'))
-        
+        // コピー
     })
 })
 
