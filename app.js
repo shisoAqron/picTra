@@ -54,13 +54,40 @@ $('#datepicker_reset').on('click', () => {
 // ディレクトリ選択
 $('#directry_selecter').change(()=>{
     if(typeof $('#directry_selecter')[0].files[0] == 'undefined') return
-    $('#directry_selecter_label').html($('#directry_selecter')[0].files[0].name)
-    const path = $('#directry_selecter')[0].files[0].path
+    const inputMode = $('#directry_selecter').attr('mode')
 
-    imgs = new imageData(path)
+    let dirPath = $('#directry_selecter')[0].files[0].path
+    if(inputMode == 'nomal'){
+        $('#directry_selecter_label').html($('#directry_selecter')[0].files[0].name)
+    }else if(inputMode == 'iPhone'){
+        $('#directry_selecter_label').html('DCIM')
+
+        const exist_DCIM = dirPath.indexOf("DCIM")
+        if(exist_DCIM == -1) dirPath = path.dirname(dirPath)
+        else dirPath = dirPath.substring(0, exist_DCIM+4)
+    }else{
+        return
+    }
+    console.log(dirPath)
+
+    delete imgs
+    imgs = new imageData(dirPath)
     const files = imgs.getFiles('createTime', 'dsc')
     reRender_picture_list(files)
 })
+
+// ディレクトリ選択の切り替え
+$('#dir_mode_change').on('click', () => {
+    const inputMode = $('#directry_selecter').attr('mode')
+    if(inputMode == 'nomal') {
+        $('#directry_selecter').attr('mode','iPhone')
+        $('#directry_selecter').removeAttr('webkitdirectory')
+    }else {
+        $('#directry_selecter').attr('mode','nomal')
+        $('#directry_selecter').attr('webkitdirectory','')
+    }
+})
+
 
 /**
  * 画像リストの再描写
@@ -100,8 +127,8 @@ const reRender_picture_list = (files) =>{
 
     // 画像のチェックボックス無効化
     $('.disabled_checkbox').on('click', () => {
-        return false;
-    });
+        return false
+    })
 }
 
 // 転送先フォルダ決定でフォルダ名表示
